@@ -14,7 +14,6 @@
       <el-form-item label="商品价格">
         <el-input v-model="form.price"></el-input>
       </el-form-item>
-
       <el-upload
         class="upload-demo"
         action="#"
