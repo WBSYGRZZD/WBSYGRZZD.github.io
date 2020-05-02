@@ -8,6 +8,11 @@
     </el-button>
     <el-table :data="filterBy(cargos,input)" style="width: 100%">
       <el-table-column prop="id" label="序号" width="200"></el-table-column>
+      <el-table-column label="商品图片" width="200">
+        <template slot-scope="scope">
+          <img :src="cargos[scope.$index].picurl" width="75" />
+        </template>
+      </el-table-column>
       <el-table-column prop="type" label="商品类型" width="200"></el-table-column>
       <el-table-column prop="name" label="商品名称" width="200"></el-table-column>
       <el-table-column prop="price" label="商品价格" width="200"></el-table-column>

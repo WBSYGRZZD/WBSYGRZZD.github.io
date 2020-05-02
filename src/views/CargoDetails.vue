@@ -14,6 +14,21 @@
       <el-form-item label="商品价格">
         <el-input v-model="cargo.price"></el-input>
       </el-form-item>
+      <el-upload
+        class="upload-demo"
+        action="#"
+        :http-request="httpRequest"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
+        multiple
+        :limit="1"
+        :on-exceed="handleExceed"
+        :file-list="fileList"
+      >
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">确定</el-button>
         <el-button>
@@ -29,12 +44,43 @@ export default {
   data() {
     return {
       cargo: {},
-      types: []
+      types: [],
+      fileList: []
     };
   },
   methods: {
-    onSubmit() {
-      if (!this.cargo.name || !this.cargo.type || !this.cargo.price) {
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleExceed() {
+      this.$message.warning(`当前限制选择1个文件`);
+    },
+    beforeRemove(file) {
+      return this.$confirm(`确定移除 ${file.name}？`);
+    },
+    httpRequest(data) {
+      console.log(data.file);
+      console.log(this.fileList);
+      this.fileList[0] = data.file;
+    },
+    base64: file =>
+      new Promise(resolve => {
+        let reader = new FileReader();
+        reader.onload = function() {
+          resolve(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }),
+    async onSubmit() {
+      if (
+        !this.cargo.name ||
+        !this.cargo.type ||
+        !this.cargo.price ||
+        !this.fileList[0]
+      ) {
         this.$message({
           message: "请添加对应的信息！",
           type: "warning"
@@ -44,7 +90,8 @@ export default {
           type: this.cargo.type,
           name: this.cargo.name,
           price: this.cargo.price,
-          sales: 0
+          sales: 0,
+          picurl: await this.base64(this.fileList[0])
         };
         this.$http
           .put(
