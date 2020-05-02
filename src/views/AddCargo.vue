@@ -82,19 +82,24 @@ export default {
         reader.readAsDataURL(file);
       }),
     async onSubmit() {
-      if (!this.form.name || !this.form.type || !this.form.price) {
+      let newCargo = {
+        type: this.form.type,
+        name: this.form.name,
+        price: this.form.price,
+        sales: 0,
+        picurl: await this.base64(this.fileList[0])
+      };
+      if (
+        !newCargo.name ||
+        !newCargo.type ||
+        !newCargo.price ||
+        !newCargo.picurl
+      ) {
         this.$message({
           message: "请添加对应的信息！",
           type: "warning"
         });
       } else {
-        let newCargo = {
-          type: this.form.type,
-          name: this.form.name,
-          price: this.form.price,
-          sales: 0,
-          picurl: await this.base64(this.fileList[0])
-        };
         this.$http
           .post("http://localhost:3000/cargos", newCargo)
           .then(function() {
