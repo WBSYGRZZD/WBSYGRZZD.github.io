@@ -49,12 +49,8 @@ export default {
     };
   },
   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
+    handleRemove() {},
+    handlePreview() {},
     handleExceed() {
       this.$message.warning(`当前限制选择1个文件`);
     },
@@ -62,8 +58,6 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
     httpRequest(data) {
-      console.log(data.file);
-      console.log(this.fileList);
       this.fileList[0] = data.file;
     },
     base64: file =>

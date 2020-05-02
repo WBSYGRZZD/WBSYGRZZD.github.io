@@ -53,12 +53,8 @@ export default {
     };
   },
   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
+    handleRemove() {},
+    handlePreview() {},
     handleExceed() {
       this.$message.warning(`当前限制选择1个文件`);
     },
