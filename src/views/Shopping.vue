@@ -6,7 +6,7 @@
           <img :src="cargo.picurl" width="300px" />
           <h3>{{cargo.name}}</h3>
           <h3>{{cargo.price}}</h3>
-          <el-button type="primary">加入购物车</el-button>
+          <el-button type="primary" @click="addShoppingCart">加入购物车</el-button>
           <el-button type="primary">购买</el-button>
         </div>
       </el-col>
@@ -22,6 +22,16 @@ export default {
     };
   },
   methods: {
+    addShoppingCart() {
+      this.$http
+        .post("http://localhost:3000/shoppingcarts", this.cargo)
+        .then(function() {
+          this.$message({
+            message: "购物车添加成功",
+            type: "success"
+          });
+        });
+    },
     fetchCargo(id) {
       this.$http
         .get("http://localhost:3000/cargos/" + id)

@@ -5,6 +5,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/",
+    redirect: "/Home",
+  },
+  {
     path: "/Home",
     component: () => import("../views/Home"),
     children: [
@@ -19,8 +23,8 @@ const routes = [
     ],
   },
   {
-    path: "/",
-    redirect: "/Home",
+    path: "/ShoppingCart",
+    component: () => import("../views/ShoppingCart"),
   },
   {
     path: "/Backstage",

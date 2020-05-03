@@ -5,6 +5,9 @@
         <router-link to="/Home">首页</router-link>
       </el-breadcrumb-item>
       <el-breadcrumb-item>
+        <router-link to="/ShoppingCart">购物车</router-link>
+      </el-breadcrumb-item>
+      <el-breadcrumb-item>
         <router-link to="/Backstage">后台</router-link>
       </el-breadcrumb-item>
     </el-breadcrumb>
