@@ -2,7 +2,7 @@
   <div id="app">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item>
-        <router-link to="/">首页</router-link>
+        <router-link to="/Home">首页</router-link>
       </el-breadcrumb-item>
       <el-breadcrumb-item>
         <router-link to="/Backstage">后台</router-link>

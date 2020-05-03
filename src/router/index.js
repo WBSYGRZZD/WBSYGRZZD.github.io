@@ -5,8 +5,18 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/Home",
     component: () => import("../views/Home"),
+    children: [
+      {
+        path: "Type/:type",
+        component: () => import("../views/Type"),
+      },
+    ],
+  },
+  {
+    path: "/",
+    redirect: "/Home",
   },
   {
     path: "/Backstage",
