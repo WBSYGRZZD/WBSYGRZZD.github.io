@@ -8,7 +8,7 @@
     </el-button>
     <el-table :data="filterBy(types,input)" style="width: 100%">
       <el-table-column prop="id" label="序号" width="180"></el-table-column>
-      <el-table-column prop="type" label="商品类型" width="180"></el-table-column>
+      <el-table-column prop="type" label="类型" width="180"></el-table-column>
       <el-table-column label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button type="text">

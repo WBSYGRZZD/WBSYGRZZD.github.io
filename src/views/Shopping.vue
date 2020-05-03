@@ -18,18 +18,53 @@
 export default {
   data() {
     return {
-      cargo: {}
+      cargo: {},
+      shoppingcarts: [],
+      shoppingcart: {}
     };
   },
   methods: {
     addShoppingCart() {
-      this.$http
-        .post("http://localhost:3000/shoppingcarts", this.cargo)
-        .then(function() {
-          this.$message({
-            message: "购物车添加成功",
-            type: "success"
+      if (
+        this.shoppingcarts.findIndex(item => item.id == this.cargo.id) == -1
+      ) {
+        this.cargo.count = 1;
+        console.log(this.cargo);
+        this.$http
+          .post("http://localhost:3000/shoppingcarts", this.cargo)
+          .then(function() {
+            this.$message({
+              message: "购物车添加成功",
+              type: "success"
+            });
           });
+      } else {
+        this.cargo.count = this.shoppingcart.count + 1;
+        this.$http
+          .put(
+            "http://localhost:3000/shoppingcarts/" + this.$route.params.id,
+            this.cargo
+          )
+          .then(function() {
+            this.$message({
+              message: "购物车添加成功",
+              type: "success"
+            });
+          });
+      }
+    },
+    fetchShoppingCarts() {
+      this.$http
+        .get("http://localhost:3000/shoppingcarts")
+        .then(function(response) {
+          this.shoppingcarts = response.body;
+        });
+    },
+    fetchShoppingCart(id) {
+      this.$http
+        .get("http://localhost:3000/shoppingcarts/" + id)
+        .then(function(response) {
+          this.shoppingcart = response.body;
         });
     },
     fetchCargo(id) {
@@ -42,6 +77,8 @@ export default {
   },
   created() {
     this.fetchCargo(this.$route.params.id);
+    this.fetchShoppingCarts();
+    this.fetchShoppingCart(this.$route.params.id);
   }
 };
 </script>

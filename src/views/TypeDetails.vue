@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form ref="form" :model="type" label-width="80px">
-      <el-form-item label="商品类型">
+      <el-form-item label="类型">
         <el-input v-model="type.type"></el-input>
       </el-form-item>
       <el-form-item>

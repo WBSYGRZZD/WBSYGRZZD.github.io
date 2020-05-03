@@ -1,17 +1,17 @@
 <template>
   <div>
     <el-form ref="form" :model="cargo" label-width="80px">
-      <el-form-item label="商品类型">
-        <el-select v-model="cargo.type" placeholder="请选择商品类型">
+      <el-form-item label="类型">
+        <el-select v-model="cargo.type" placeholder="请选择类型">
           <div v-for="type in types" :key="type.id">
             <el-option :label="type.type" :value="type.type"></el-option>
           </div>
         </el-select>
       </el-form-item>
-      <el-form-item label="商品名称">
+      <el-form-item label="名称">
         <el-input v-model="cargo.name"></el-input>
       </el-form-item>
-      <el-form-item label="商品价格">
+      <el-form-item label="价格">
         <el-input v-model="cargo.price"></el-input>
       </el-form-item>
       <el-upload
