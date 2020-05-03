@@ -12,6 +12,10 @@ const routes = [
         path: "Type/:type",
         component: () => import("../views/Type"),
       },
+      {
+        path: "Shopping/:id",
+        component: () => import("../views/Shopping"),
+      },
     ],
   },
   {

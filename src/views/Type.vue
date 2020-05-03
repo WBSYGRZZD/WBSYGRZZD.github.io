@@ -7,13 +7,24 @@
       <el-table-column prop="id" label="序号" width="200"></el-table-column>
       <el-table-column label="商品图片" width="200">
         <template slot-scope="scope">
-          <img :src="cargos[scope.$index].picurl" width="75" />
+          <el-image
+            style="width: 75px; height: 75px"
+            :src="cargos[scope.$index].picurl"
+            fit="cover"
+          ></el-image>
         </template>
       </el-table-column>
       <el-table-column prop="type" label="商品类型" width="200"></el-table-column>
       <el-table-column prop="name" label="商品名称" width="200"></el-table-column>
       <el-table-column prop="price" label="商品价格" width="200"></el-table-column>
       <el-table-column prop="sales" label="商品销量" width="200"></el-table-column>
+      <el-table-column label="操作" min-width="100">
+        <template slot-scope="scope">
+          <el-button type="text">
+            <router-link :to="'/Home/Shopping/'+cargos[scope.$index].id">购买</router-link>
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>

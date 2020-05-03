@@ -11,13 +11,40 @@
         </el-menu>
       </el-col>
       <el-col :span="22">
-        <div class="block">
-          <span class="demonstration">Click 指示器触发</span>
-          <el-carousel trigger="click" height="150px">
-            <el-carousel-item v-for="item in 4" :key="item">
-              <h3 class="small">{{ item }}</h3>
-            </el-carousel-item>
-          </el-carousel>
+        <div v-if="!this.$route.params.type&&!this.$route.params.id">
+          <div style="margin-top: 15px;">
+            <el-input placeholder="请输入内容" v-model="input"></el-input>
+          </div>
+          <div class="block">
+            <el-carousel trigger="click" height="150px">
+              <el-carousel-item v-for="item in 4" :key="item">
+                <h3 class="small">{{ item }}</h3>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+          <el-table :data="filterBy(cargos,input)" style="width: 100%">
+            <el-table-column prop="id" label="序号" width="200"></el-table-column>
+            <el-table-column label="商品图片" width="200">
+              <template slot-scope="scope">
+                <el-image
+                  style="width: 75px; height: 75px"
+                  :src="cargos[scope.$index].picurl"
+                  fit="cover"
+                ></el-image>
+              </template>
+            </el-table-column>
+            <el-table-column prop="type" label="商品类型" width="200"></el-table-column>
+            <el-table-column prop="name" label="商品名称" width="200"></el-table-column>
+            <el-table-column prop="price" label="商品价格" width="200"></el-table-column>
+            <el-table-column prop="sales" label="商品销量" width="200"></el-table-column>
+            <el-table-column label="操作" min-width="100">
+              <template slot-scope="scope">
+                <el-button type="text">
+                  <router-link :to="'/Home/Shopping/'+cargos[scope.$index].id">购买</router-link>
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
         <router-view />
       </el-col>
@@ -30,7 +57,9 @@ export default {
   name: "Home",
   data() {
     return {
-      types: []
+      types: [],
+      cargos: [],
+      input: ""
     };
   },
   methods: {
@@ -44,9 +73,20 @@ export default {
       this.$http.get("http://localhost:3000/types").then(function(response) {
         this.types = response.body;
       });
+    },
+    fetchCargos() {
+      this.$http.get("http://localhost:3000/cargos").then(function(response) {
+        this.cargos = response.body;
+      });
+    },
+    filterBy(cargos, input) {
+      return cargos.filter(function(cargo) {
+        return cargo.name.match(input) || cargo.type.match(input);
+      });
     }
   },
   created() {
+    this.fetchCargos();
     this.fetchTypes();
   }
 };

@@ -10,7 +10,11 @@
       <el-table-column prop="id" label="序号" width="200"></el-table-column>
       <el-table-column label="商品图片" width="200">
         <template slot-scope="scope">
-          <img :src="cargos[scope.$index].picurl" width="75" />
+          <el-image
+            style="width: 75px; height: 75px"
+            :src="cargos[scope.$index].picurl"
+            fit="cover"
+          ></el-image>
         </template>
       </el-table-column>
       <el-table-column prop="type" label="商品类型" width="200"></el-table-column>
@@ -44,10 +48,10 @@ export default {
           message: "商品删除成功",
           type: "success"
         });
-        this.fetchCargo();
+        this.fetchCargos();
       });
     },
-    fetchCargo() {
+    fetchCargos() {
       this.$http.get("http://localhost:3000/cargos").then(function(response) {
         this.cargos = response.body;
       });
@@ -59,7 +63,7 @@ export default {
     }
   },
   created() {
-    this.fetchCargo();
+    this.fetchCargos();
   }
 };
 </script>
