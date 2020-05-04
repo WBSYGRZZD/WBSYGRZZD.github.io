@@ -16,9 +16,9 @@
             <el-input placeholder="请输入内容" v-model="input"></el-input>
           </div>
           <div class="block">
-            <el-carousel trigger="click" height="150px">
-              <el-carousel-item v-for="item in 4" :key="item">
-                <h3 class="small">{{ item }}</h3>
+            <el-carousel trigger="click">
+              <el-carousel-item v-for="carousel in carousels" :key="carousel.id">
+                <img :src="carousel.picurl" />
               </el-carousel-item>
             </el-carousel>
           </div>
@@ -36,7 +36,7 @@
             <el-table-column label="操作" min-width="100">
               <template slot-scope="scope">
                 <el-button type="text">
-                  <router-link :to="'/Home/Shopping/'+cargos[scope.$index].id">购买</router-link>
+                  <router-link :to="'/Home/Shopping/'+cargos[scope.$index].id">进入</router-link>
                 </el-button>
               </template>
             </el-table-column>
@@ -55,6 +55,7 @@ export default {
     return {
       types: [],
       cargos: [],
+      carousels: [],
       input: ""
     };
   },
@@ -75,6 +76,13 @@ export default {
         this.cargos = response.body;
       });
     },
+    fetchCarousels() {
+      this.$http
+        .get("http://localhost:3000/carousels")
+        .then(function(response) {
+          this.carousels = response.body;
+        });
+    },
     filterBy(cargos, input) {
       return cargos.filter(function(cargo) {
         return cargo.name.match(input) || cargo.type.match(input);
@@ -84,6 +92,7 @@ export default {
   created() {
     this.fetchCargos();
     this.fetchTypes();
+    this.fetchCarousels();
   }
 };
 </script>

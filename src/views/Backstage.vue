@@ -16,12 +16,18 @@
             </span>
           </el-menu-item>
           <el-menu-item index="3">
+            <i class="el-icon-picture"></i>
+            <span slot="title">
+              <router-link to="/Backstage/CarouselManagement">轮播图管理</router-link>
+            </span>
+          </el-menu-item>
+          <el-menu-item index="4">
             <i class="el-icon-document"></i>
             <span slot="title">
               <router-link to="/Backstage/OrderManagement">订单管理</router-link>
             </span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="5">
             <i class="el-icon-s-custom"></i>
             <span slot="title">
               <router-link to="/Backstage/UserManagement">用户管理</router-link>

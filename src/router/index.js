@@ -39,6 +39,10 @@ const routes = [
         component: () => import("../views/TypeManagement"),
       },
       {
+        path: "CarouselManagement",
+        component: () => import("../views/CarouselManagement"),
+      },
+      {
         path: "OrderManagement",
         component: () => import("../views/OrderManagement"),
       },
@@ -55,6 +59,10 @@ const routes = [
         component: () => import("../views/AddType"),
       },
       {
+        path: "AddCarousel",
+        component: () => import("../views/AddCarousel"),
+      },
+      {
         path: "AddUser",
         component: () => import("../views/AddUser"),
       },
@@ -65,6 +73,10 @@ const routes = [
       {
         path: "TypeDetails/:id",
         component: () => import("../views/TypeDetails"),
+      },
+      {
+        path: "CarouselDetails/:id",
+        component: () => import("../views/CarouselDetails"),
       },
       {
         path: "UserDetails/:id",

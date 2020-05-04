@@ -7,7 +7,7 @@
           <h3>{{cargo.name}}</h3>
           <h3>{{cargo.price}}</h3>
           <el-button type="primary" @click="addShoppingCart">加入购物车</el-button>
-          <el-button type="primary">购买</el-button>
+          <el-button type="primary" @click="addOrder">购买</el-button>
         </div>
       </el-col>
     </el-row>
@@ -24,6 +24,24 @@ export default {
     };
   },
   methods: {
+    addOrder() {
+      let newOrder = {
+        type: this.cargo.type,
+        name: this.cargo.name,
+        price: this.cargo.price,
+        picurl: this.cargo.picurl,
+        time: new Date(),
+        username: ""
+      };
+      this.$http
+        .post("http://localhost:3000/orders", newOrder)
+        .then(function() {
+          this.$message({
+            message: "商品购买成功",
+            type: "success"
+          });
+        });
+    },
     addShoppingCart() {
       if (
         this.shoppingcarts.findIndex(item => item.id == this.cargo.id) == -1

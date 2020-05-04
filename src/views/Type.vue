@@ -17,7 +17,7 @@
       <el-table-column label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button type="text">
-            <router-link :to="'/Home/Shopping/'+scope.row.id">购买</router-link>
+            <router-link :to="'/Home/Shopping/'+scope.row.id">进入</router-link>
           </el-button>
         </template>
       </el-table-column>
