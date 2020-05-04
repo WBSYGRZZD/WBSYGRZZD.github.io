@@ -43,3 +43,5 @@
 1.数据请求优化（axios）
 
 2.异步处理（pormise）
+
+#程序运行方式 1.打开终端 2.进入文件夹 3.分别输入 npm run serve,和 npm run json:server 运行程序和本地数据服务 4.打开浏览器 5.输入http://localhost:8080/
