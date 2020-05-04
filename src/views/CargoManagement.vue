@@ -8,7 +8,7 @@
     </el-button>
     <el-table :data="filterBy(cargos,input)" style="width: 100%">
       <el-table-column prop="id" label="序号" width="200"></el-table-column>
-      <el-table-column prop="picurl" label="图片" width="200">
+      <el-table-column label="图片" width="200">
         <template slot-scope="scope">
           <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
         </template>
@@ -20,9 +20,9 @@
       <el-table-column label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button type="text">
-            <router-link :to="'/Backstage/CargoDetails/'+cargos[scope.$index].id">查看详情</router-link>
+            <router-link :to="'/Backstage/CargoDetails/'+scope.row.id">查看详情</router-link>
           </el-button>
-          <el-button type="primary" @click="deleteCargo(cargos[scope.$index].id)">删除</el-button>
+          <el-button type="primary" @click="deleteCargo(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

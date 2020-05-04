@@ -29,7 +29,6 @@ export default {
         this.shoppingcarts.findIndex(item => item.id == this.cargo.id) == -1
       ) {
         this.cargo.count = 1;
-        console.log(this.cargo);
         this.$http
           .post("http://localhost:3000/shoppingcarts", this.cargo)
           .then(function() {
@@ -52,6 +51,7 @@ export default {
             });
           });
       }
+      this.fetchShoppingCart(this.$route.params.id);
     },
     fetchShoppingCarts() {
       this.$http

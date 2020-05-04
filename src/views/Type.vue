@@ -5,7 +5,7 @@
     </div>
     <el-table :data="filterBy(cargos,input)" style="width: 100%">
       <el-table-column prop="id" label="序号" width="200"></el-table-column>
-      <el-table-column prop="picurl" label="图片" width="200">
+      <el-table-column label="图片" width="200">
         <template slot-scope="scope">
           <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
         </template>
@@ -17,7 +17,7 @@
       <el-table-column label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button type="text">
-            <router-link :to="'/Home/Shopping/'+cargos[scope.$index].id">购买</router-link>
+            <router-link :to="'/Home/Shopping/'+scope.row.id">购买</router-link>
           </el-button>
         </template>
       </el-table-column>

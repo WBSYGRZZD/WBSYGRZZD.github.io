@@ -12,9 +12,9 @@
       <el-table-column label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button type="text">
-            <router-link :to="'/Backstage/UserDetails/'+users[scope.$index].id">查看详情</router-link>
+            <router-link :to="'/Backstage/UserDetails/'+scope.row.id">查看详情</router-link>
           </el-button>
-          <el-button type="primary" @click="deleteUser(users[scope.$index].id)">删除</el-button>
+          <el-button type="primary" @click="deleteUser(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
