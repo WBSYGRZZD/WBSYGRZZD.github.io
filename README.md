@@ -1,24 +1,45 @@
-# vue-dome
+老师，这是程序初稿，论文我会在本周三前提交
 
-## Project setup
-```
-npm install
-```
+目前已完成的功能：
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+1.后台商品的增删改查
 
-### Compiles and minifies for production
-```
-npm run build
-```
+2.后台类别的增删改查
 
-### Lints and fixes files
-```
-npm run lint
-```
+3.后台轮播图的增删改
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+4.后台订单的删除和查询
+
+4.用户的增删改查
+
+5.首页的商品展示，轮播图，分类查询
+
+6.购物界面的添加购物车，购买
+
+7.本地数据的存储与读取
+
+即将完成的功能（还未完成，三天内完成）：
+
+1.用户登录，管理员登录
+
+2.用户购买记录
+
+3.用户的交易限制
+
+4.后台操作的限制
+
+5.弹窗及提示优化
+
+6.信息排序
+
+7.信息分页
+
+8.购物车商品数量修改
+
+9.产品 ui 界面优化
+
+可能进行的工作：
+
+1.数据请求优化（axios）
+
+2.异步处理（pormise）
