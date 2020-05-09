@@ -12,7 +12,7 @@
           <el-menu-item index="2">
             <i class="el-icon-menu"></i>
             <span slot="title">
-              <router-link to="/Backstage/TypeManagement">类别管理</router-link>
+              <router-link to="/Backstage/TypeManagement">类型管理</router-link>
             </span>
           </el-menu-item>
           <el-menu-item index="3">
