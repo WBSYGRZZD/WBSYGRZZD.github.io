@@ -57,4 +57,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  color: #000;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+}
+a:hover,
+.el-menu > .el-menu-item:hover a {
+  font-size: 120%;
+  font-weight: bold;
+  color: #190d0d;
+}
 </style>

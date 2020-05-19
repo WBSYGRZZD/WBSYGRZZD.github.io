@@ -6,11 +6,15 @@
     <el-button type="primary">
       <router-link to="/Backstage/AddCargo">添加</router-link>
     </el-button>
-    <el-table :data="filterBy(cargos,input)" style="width: 100%">
+    <el-table :data="filterBy(cargos, input)" style="width: 100%">
       <el-table-column prop="id" label="序号" width="200"></el-table-column>
       <el-table-column label="图片" width="200">
         <template slot-scope="scope">
-          <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
+          <el-image
+            style="width: 75px; height: 75px"
+            :src="scope.row.picurl"
+            fit="cover"
+          ></el-image>
         </template>
       </el-table-column>
       <el-table-column prop="type" label="类型" width="200"></el-table-column>
@@ -20,9 +24,13 @@
       <el-table-column label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button type="text">
-            <router-link :to="'/Backstage/CargoDetails/'+scope.row.id">查看详情</router-link>
+            <router-link :to="'/Backstage/CargoDetails/' + scope.row.id"
+              >查看详情</router-link
+            >
           </el-button>
-          <el-button type="primary" @click="deleteCargo(scope.row.id)">删除</el-button>
+          <el-button type="primary" @click="deleteCargo(scope.row.id)"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -34,7 +42,7 @@ export default {
   data() {
     return {
       cargos: [],
-      input: ""
+      input: "",
     };
   },
   methods: {
@@ -42,7 +50,7 @@ export default {
       this.$http.delete("http://localhost:3000/cargos/" + id).then(function() {
         this.$message({
           message: "商品删除成功",
-          type: "success"
+          type: "success",
         });
         this.fetchCargos();
       });
@@ -56,13 +64,12 @@ export default {
       return cargos.filter(function(cargo) {
         return cargo.name.match(input) || cargo.type.match(input);
       });
-    }
+    },
   },
   created() {
     this.fetchCargos();
-  }
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
