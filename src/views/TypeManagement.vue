@@ -6,10 +6,10 @@
     <el-button type="primary">
       <router-link to="/Backstage/AddType">添加</router-link>
     </el-button>
-    <el-table :data="filterBy(types,input)" style="width: 100%">
-      <el-table-column prop="id" label="序号" width="180"></el-table-column>
-      <el-table-column prop="type" label="类型" width="180"></el-table-column>
-      <el-table-column label="操作" min-width="100">
+    <el-table :data="filterBy(types,input)">
+      <el-table-column prop="id" label="序号"></el-table-column>
+      <el-table-column prop="type" label="类型"></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text">
             <router-link :to="'/Backstage/TypeDetails/'+scope.row.id">查看详情</router-link>

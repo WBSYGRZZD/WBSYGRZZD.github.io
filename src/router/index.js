@@ -22,17 +22,16 @@ const routes = [
       },
     ],
   },
-{
-  path: "/Home", //父路由路径
-  component: () => import("../views/Home"), //父路由组件
-  children: [
-    {
-      path: "Type", //子路由路径，会被添加在父路由路径末尾
-      component: () => import("../views/Type"), //子路由组件
-    }, //当/Home/Type加载成功Type.vue会被渲染在Home.vue的＜router-view＞中
-    //其他子路由
-  ],
-},
+  {
+    path: "/Home",
+    component: () => import("../views/Home"),
+    children: [
+      {
+        path: "Type",
+        component: () => import("../views/Type"),
+      },
+    ],
+  },
 
   {
     path: "/ShoppingCart",

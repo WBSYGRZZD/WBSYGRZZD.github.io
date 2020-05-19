@@ -9,12 +9,12 @@
         </el-select>
       </el-form-item>
       <el-form-item label="名称">
-        <el-col :span="4">
+        <el-col :span="7">
           <el-input v-model="form.name"></el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="价格">
-        <el-col :span="4">
+        <el-col :span="7">
           <el-input v-model="form.price"></el-input>
         </el-col>
       </el-form-item>

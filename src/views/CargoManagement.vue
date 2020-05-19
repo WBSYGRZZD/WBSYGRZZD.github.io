@@ -2,35 +2,28 @@
   <div>
     <div style="margin-top: 15px;">
       <el-input placeholder="请输入内容" v-model="input"></el-input>
+      <el-button type="primary">
+        <router-link to="/Backstage/AddCargo">添加</router-link>
+      </el-button>
     </div>
-    <el-button type="primary">
-      <router-link to="/Backstage/AddCargo">添加</router-link>
-    </el-button>
-    <el-table :data="filterBy(cargos, input)" style="width: 100%">
-      <el-table-column prop="id" label="序号" width="200"></el-table-column>
-      <el-table-column label="图片" width="200">
+
+    <el-table :data="filterBy(cargos, input)">
+      <el-table-column prop="id" label="序号"></el-table-column>
+      <el-table-column label="图片">
         <template slot-scope="scope">
-          <el-image
-            style="width: 75px; height: 75px"
-            :src="scope.row.picurl"
-            fit="cover"
-          ></el-image>
+          <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
         </template>
       </el-table-column>
-      <el-table-column prop="type" label="类型" width="200"></el-table-column>
-      <el-table-column prop="name" label="名称" width="200"></el-table-column>
-      <el-table-column prop="price" label="价格" width="200"></el-table-column>
-      <el-table-column prop="sales" label="销量" width="200"></el-table-column>
-      <el-table-column label="操作" min-width="100">
+      <el-table-column prop="type" label="类型"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
+      <el-table-column prop="price" label="价格"></el-table-column>
+      <el-table-column prop="sales" label="销量"></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text">
-            <router-link :to="'/Backstage/CargoDetails/' + scope.row.id"
-              >查看详情</router-link
-            >
+            <router-link :to="'/Backstage/CargoDetails/' + scope.row.id">查看详情</router-link>
           </el-button>
-          <el-button type="primary" @click="deleteCargo(scope.row.id)"
-            >删除</el-button
-          >
+          <el-button type="primary" @click="deleteCargo(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -42,7 +35,7 @@ export default {
   data() {
     return {
       cargos: [],
-      input: "",
+      input: ""
     };
   },
   methods: {
@@ -50,7 +43,7 @@ export default {
       this.$http.delete("http://localhost:3000/cargos/" + id).then(function() {
         this.$message({
           message: "商品删除成功",
-          type: "success",
+          type: "success"
         });
         this.fetchCargos();
       });
@@ -64,12 +57,13 @@ export default {
       return cargos.filter(function(cargo) {
         return cargo.name.match(input) || cargo.type.match(input);
       });
-    },
+    }
   },
   created() {
     this.fetchCargos();
-  },
+  }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

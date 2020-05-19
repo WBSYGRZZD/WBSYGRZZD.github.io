@@ -30,7 +30,12 @@ export default {
         name: this.cargo.name,
         price: this.cargo.price,
         picurl: this.cargo.picurl,
-        time: new Date(),
+        time:
+          new Date().getFullYear() +
+          "-" +
+          (new Date().getMonth() + 1) +
+          "-" +
+          new Date().getDate(),
         username: ""
       };
       this.$http

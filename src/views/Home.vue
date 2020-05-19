@@ -44,7 +44,9 @@
             </el-table>
           </el-col>
         </div>
-        <router-view />
+        <el-col :span="11" :offset="6">
+          <router-view />
+        </el-col>
       </el-col>
     </el-row>
   </div>
@@ -109,6 +111,7 @@ export default {
 a {
   color: #000;
   text-decoration: none;
+  text-align: center;
   display: inline-block;
   width: 100%;
 }

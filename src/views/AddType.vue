@@ -2,12 +2,14 @@
   <div>
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="类型">
-        <el-input v-model="form.type"></el-input>
+        <el-col :span="7">
+          <el-input v-model="form.type"></el-input>
+        </el-col>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">添加</el-button>
         <el-button>
-          <router-link to="/Backstage/CargoManagement">取消</router-link>
+          <router-link to="/Backstage/TypeManagement">取消</router-link>
         </el-button>
       </el-form-item>
     </el-form>

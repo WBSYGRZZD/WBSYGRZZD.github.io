@@ -3,18 +3,18 @@
     <div style="margin-top: 15px;">
       <el-input placeholder="请输入内容" v-model="input"></el-input>
     </div>
-    <el-table :data="filterBy(cargos,input)" style="width: 100%">
-      <el-table-column prop="id" label="序号" width="200"></el-table-column>
-      <el-table-column label="图片" width="200">
+    <el-table :data="filterBy(cargos,input)">
+      <el-table-column prop="id" label="序号"></el-table-column>
+      <el-table-column label="图片">
         <template slot-scope="scope">
           <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
         </template>
       </el-table-column>
-      <el-table-column prop="type" label="类型" width="200"></el-table-column>
-      <el-table-column prop="name" label="名称" width="200"></el-table-column>
-      <el-table-column prop="price" label="价格" width="200"></el-table-column>
-      <el-table-column prop="sales" label="销量" width="200"></el-table-column>
-      <el-table-column label="操作" min-width="100">
+      <el-table-column prop="type" label="类型"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
+      <el-table-column prop="price" label="价格"></el-table-column>
+      <el-table-column prop="sales" label="销量"></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text">
             <router-link :to="'/Home/Shopping/'+scope.row.id">进入</router-link>

@@ -6,10 +6,10 @@
     <el-button type="primary">
       <router-link to="/Backstage/AddUser">添加</router-link>
     </el-button>
-    <el-table :data="filterBy(users,input)" style="width: 100%">
-      <el-table-column prop="id" label="序号" width="180"></el-table-column>
-      <el-table-column prop="name" label="用户名" width="180"></el-table-column>
-      <el-table-column label="操作" min-width="100">
+    <el-table :data="filterBy(users,input)">
+      <el-table-column prop="id" label="序号"></el-table-column>
+      <el-table-column prop="name" label="用户名"></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text">
             <router-link :to="'/Backstage/UserDetails/'+scope.row.id">查看详情</router-link>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="3">
+      <el-col :span="2">
         <el-menu @open="handleOpen" @close="handleClose">
           <el-menu-item index="1">
             <i class="el-icon-s-goods"></i>
@@ -35,7 +35,7 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="21">
+      <el-col :span="11" :offset="6">
         <router-view />
       </el-col>
     </el-row>
@@ -52,6 +52,9 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     }
+  },
+  created() {
+    this.$router.push({ path: "/Backstage/CargoManagement" });
   }
 };
 </script>

@@ -2,23 +2,27 @@
   <div>
     <el-form ref="form" :model="carousel" label-width="80px">
       <el-form-item label="名称">
-        <el-input v-model="carousel.name"></el-input>
+        <el-col :span="7">
+          <el-input v-model="carousel.name"></el-input>
+        </el-col>
       </el-form-item>
-      <el-upload
-        class="upload-demo"
-        action="#"
-        :http-request="httpRequest"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :before-remove="beforeRemove"
-        multiple
-        :limit="1"
-        :on-exceed="handleExceed"
-        :file-list="fileList"
-      >
-        <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-      </el-upload>
+      <el-form-item>
+        <el-upload
+          class="upload-demo"
+          action="#"
+          :http-request="httpRequest"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          multiple
+          :limit="1"
+          :on-exceed="handleExceed"
+          :file-list="fileList"
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">添加</el-button>
         <el-button>

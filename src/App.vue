@@ -1,21 +1,11 @@
 <template>
   <div id="app">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item>
-        <router-link to="/Home">首页</router-link>
-      </el-breadcrumb-item>
-      <el-breadcrumb-item>
-        <router-link to="/Backstage">后台</router-link>
-      </el-breadcrumb-item>
-      <div v-if="true">
-        <el-breadcrumb-item>
-          <router-link to="/ShoppingCart">购物车</router-link>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>
-          <el-button type="text" @click="login">未登录</el-button>
-        </el-breadcrumb-item>
-      </div>
-    </el-breadcrumb>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="首页" name="Home"></el-tab-pane>
+      <el-tab-pane label="后台" name="Backstage"></el-tab-pane>
+      <el-tab-pane label="购物车" name="ShoppingCart"></el-tab-pane>
+      <el-tab-pane label="未登录" name="login"></el-tab-pane>
+    </el-tabs>
     <router-view />
   </div>
 </template>
@@ -23,14 +13,20 @@
 <script>
 export default {
   name: "app",
-  components: {},
+
   data() {
-    return {};
+    return {
+      activeName: "first"
+    };
   },
   methods: {
+    handleClick(tab) {
+      this.$router.push({ path: "/" + tab.name });
+    },
     login() {}
   }
 };
 </script>
 
-<style></style>
+<style>
+</style>

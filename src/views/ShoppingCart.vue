@@ -1,27 +1,29 @@
 <template>
   <div>
-    <el-table :data="shoppingcarts" style="width: 100%">
-      <el-table-column prop="id" label="序号" width="200"></el-table-column>
-      <el-table-column label="图片" width="200">
-        <template slot-scope="scope">
-          <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column prop="type" label="类型" width="200"></el-table-column>
-      <el-table-column prop="name" label="名称" width="200"></el-table-column>
-      <el-table-column prop="price" label="单价（元）" width="200"></el-table-column>
-      <el-table-column width="200">
-        <template slot-scope="scope">
-          <el-checkbox v-model="checkeds[scope.$index]" @change="calculationSum"></el-checkbox>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" min-width="100">
-        <template slot-scope="scope">
-          <el-button type="primary" @click="deleteShoppingCart(scope.row.id)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <h3>总价：{{sum}}</h3>
+    <el-col :span="11" :offset="6">
+      <el-table :data="shoppingcarts">
+        <el-table-column prop="id" label="序号"></el-table-column>
+        <el-table-column label="图片">
+          <template slot-scope="scope">
+            <el-image style="width: 75px; height: 75px" :src="scope.row.picurl" fit="cover"></el-image>
+          </template>
+        </el-table-column>
+        <el-table-column prop="type" label="类型"></el-table-column>
+        <el-table-column prop="name" label="名称"></el-table-column>
+        <el-table-column prop="price" label="单价（元）"></el-table-column>
+        <el-table-column>
+          <template slot-scope="scope">
+            <el-checkbox v-model="checkeds[scope.$index]" @change="calculationSum"></el-checkbox>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button type="primary" @click="deleteShoppingCart(scope.row.id)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <h3>总价：{{sum}}</h3>
+    </el-col>
   </div>
 </template>
 
