@@ -9,6 +9,14 @@ const routes = [
     redirect: "/Home",
   },
   {
+    path: "/Login",
+    component: () => import("../views/Login"),
+  },
+  {
+    path: "/PersonalCenter/:loggingid",
+    component: () => import("../views/PersonalCenter"),
+  },
+  {
     path: "/Home",
     component: () => import("../views/Home"),
     children: [
@@ -32,7 +40,10 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: "/ShoppingHistory",
+    component: () => import("../views/ShoppingHistory"),
+  },
   {
     path: "/ShoppingCart",
     component: () => import("../views/ShoppingCart"),

@@ -23,8 +23,6 @@
           class="upload-demo"
           action="#"
           :http-request="httpRequest"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
           :before-remove="beforeRemove"
           multiple
           :limit="1"
@@ -59,8 +57,6 @@ export default {
     };
   },
   methods: {
-    handleRemove() {},
-    handlePreview() {},
     handleExceed() {
       this.$message.warning(`当前限制选择1个文件`);
     },

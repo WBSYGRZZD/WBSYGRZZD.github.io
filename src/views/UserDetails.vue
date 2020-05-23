@@ -11,6 +11,13 @@
           <el-input v-model="user.password" show-password></el-input>
         </el-col>
       </el-form-item>
+      <el-form-item label="用户类型">
+        <el-select v-model="user.type" placeholder="请选择类型">
+          <div v-for="type in types" :key="type">
+            <el-option :label="type" :value="type"></el-option>
+          </div>
+        </el-select>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">确定</el-button>
         <el-button>
@@ -25,12 +32,13 @@
 export default {
   data() {
     return {
-      user: {}
+      user: {},
+      types: ["管理员", "普通用户"]
     };
   },
   methods: {
     onSubmit() {
-      if (!this.user.name || !this.user.password) {
+      if (!this.user.name || !this.user.password || !this.user.type) {
         this.$message({
           message: "请添加对应的信息！",
           type: "warning"
@@ -38,7 +46,9 @@ export default {
       } else {
         let updateUser = {
           name: this.user.name,
-          password: this.user.password
+          password: this.user.password,
+          type: this.user.type,
+          shoppingcarts: []
         };
         this.$http
           .put(

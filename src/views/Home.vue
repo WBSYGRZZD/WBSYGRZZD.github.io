@@ -4,9 +4,7 @@
       <el-col :span="2">
         <el-menu v-for="type in types" :key="type.id" @open="handleOpen" @close="handleClose">
           <el-menu-item class="navigation">
-            <span slot="title">
-              <router-link :to="'/Home/Type/'+type.type">{{type.type}}</router-link>
-            </span>
+            <router-link :to="'/Home/Type/'+type.type">{{type.type}}</router-link>
           </el-menu-item>
         </el-menu>
       </el-col>

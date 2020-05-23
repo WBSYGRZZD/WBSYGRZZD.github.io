@@ -9,6 +9,7 @@
     <el-table :data="filterBy(users,input)">
       <el-table-column prop="id" label="序号"></el-table-column>
       <el-table-column prop="name" label="用户名"></el-table-column>
+      <el-table-column prop="type" label="用户类型"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text">

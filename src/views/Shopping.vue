@@ -19,76 +19,83 @@ export default {
   data() {
     return {
       cargo: {},
-      shoppingcarts: [],
-      shoppingcart: {}
+      users: [],
+      logging: {}
     };
   },
   methods: {
     addOrder() {
-      let newOrder = {
-        type: this.cargo.type,
-        name: this.cargo.name,
-        price: this.cargo.price,
-        picurl: this.cargo.picurl,
-        time:
-          new Date().getFullYear() +
-          "-" +
-          (new Date().getMonth() + 1) +
-          "-" +
-          new Date().getDate(),
-        username: ""
-      };
-      this.$http
-        .post("http://localhost:3000/orders", newOrder)
-        .then(function() {
-          this.$message({
-            message: "商品购买成功",
-            type: "success"
-          });
-        });
-    },
-    addShoppingCart() {
-      if (
-        this.shoppingcarts.findIndex(item => item.id == this.cargo.id) == -1
-      ) {
-        this.cargo.count = 1;
-        this.$http
-          .post("http://localhost:3000/shoppingcarts", this.cargo)
-          .then(function() {
-            this.$message({
-              message: "购物车添加成功",
-              type: "success"
-            });
-          });
+      if (!this.logging.islogging) {
+        this.$message("您还没有登录，请先登录");
       } else {
-        this.cargo.count = this.shoppingcart.count + 1;
+        let newOrder = {
+          type: this.cargo.type,
+          name: this.cargo.name,
+          price: this.cargo.price,
+          picurl: this.cargo.picurl,
+          time:
+            new Date().getFullYear() +
+            "-" +
+            (new Date().getMonth() + 1) +
+            "-" +
+            new Date().getDate(),
+          username: this.logging.loggingname
+        };
         this.$http
-          .put(
-            "http://localhost:3000/shoppingcarts/" + this.$route.params.id,
-            this.cargo
-          )
+          .post("http://localhost:3000/orders", newOrder)
           .then(function() {
             this.$message({
-              message: "购物车添加成功",
+              message: "商品购买成功",
               type: "success"
             });
           });
       }
-      this.fetchShoppingCart(this.$route.params.id);
     },
-    fetchShoppingCarts() {
-      this.$http
-        .get("http://localhost:3000/shoppingcarts")
-        .then(function(response) {
-          this.shoppingcarts = response.body;
-        });
+    addShoppingCart() {
+      if (!this.logging.islogging) {
+        this.$message("您还没有登录，请先登录");
+      } else {
+        var userindex = this.users.findIndex(
+          item => item.id == this.logging.loggingid
+        );
+        var shoppingcartindex = this.users[userindex].shoppingcarts.findIndex(
+          item => item.id == this.cargo.id
+        );
+        if (shoppingcartindex == -1) {
+          this.cargo.count = 1;
+          this.users[userindex].shoppingcarts.push(this.cargo);
+          this.$http
+            .put(
+              "http://localhost:3000/users/" + this.logging.loggingid,
+              this.users[userindex]
+            )
+            .then(function() {
+              this.$message({
+                message: "购物车添加成功",
+                type: "success"
+              });
+            });
+        } else {
+          this.users[userindex].shoppingcarts[shoppingcartindex].count++;
+          this.$http
+            .put(
+              "http://localhost:3000/users/" + this.logging.loggingid,
+              this.users[userindex]
+            )
+            .then(function() {
+              this.$message({
+                message: "购物车添加成功",
+                type: "success"
+              });
+            });
+        }
+        this.fetchUsers();
+      }
     },
-    fetchShoppingCart(id) {
-      this.$http
-        .get("http://localhost:3000/shoppingcarts/" + id)
-        .then(function(response) {
-          this.shoppingcart = response.body;
-        });
+    fetchUsers() {
+      this.$http.get("http://localhost:3000/users").then(function(response) {
+        this.users = response.body;
+      });
     },
     fetchCargo(id) {
       this.$http
@@ -96,12 +103,17 @@ export default {
         .then(function(response) {
           this.cargo = response.body;
         });
+    },
+    fetchLogging() {
+      this.$http.get("http://localhost:3000/logging").then(function(response) {
+        this.logging = response.body[0];
+      });
     }
   },
   created() {
     this.fetchCargo(this.$route.params.id);
-    this.fetchShoppingCarts();
-    this.fetchShoppingCart(this.$route.params.id);
+    this.fetchLogging();
+    this.fetchUsers();
   }
 };
 </script>
